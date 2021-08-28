@@ -1,0 +1,63 @@
+ .pad {
+     width: 100%;
+     padding: 50px;
+     border-bottom-left-radius: 20px;
+     border-bottom-right-radius: 25px;
+     display: inline-block;
+
+     overflow: hidden;
+     background-position: center;
+     background-image: url("../img/bg.jpg");
+     background-repeat: no-repeat;
+     background-position: center;
+     background-size: cover;
+     height: 80px;
+ }
+
+ .PayementBan {
+     background-color: #1d2126;
+     height: auto;
+     color: wheat;
+     border-top-left-radius: 12px;
+     border-top-right-radius: 12px;
+ }
+
+ .bodyP {
+     padding: 12px;
+ }
+
+ .forfait {
+     color: #fd7e14;
+     font-size: 25px;
+ }
+
+ .donne {
+     font-size: 16px;
+ }
+
+ .footerPay {
+     background-color: #11191e;
+     padding: 10px;
+     border-bottom-left-radius: 12px;
+     border-bottom-right-radius: 12px;
+     color: wheat;
+ }
+
+ .footerPay h6 {
+     color: #fd7e14;
+ }
+
+ .pay {
+     border-top: 1px solid gray;
+ }
+
+ .ligneMomo {
+     border-bottom: 1px solid gray;
+ }
+
+ .btn-confime {
+     background-color: #fd7e14;
+     color:
+         white;
+
+ }

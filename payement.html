@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="css/bootstrap.min.css" />
+        <link rel="stylesheet" href="css/pay.css" />
+        <title>Document</title>
+    </head>
+
+    <body>
+
+        </style>
+        <div style="height: 180px;" class="pad">
+            <img src="img/logoBu.png" />
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="PayementBan">
+                        <div class="bodyP">
+                            <h6 id='forfait' class="forfait">Forfait</h6>
+                            <h6 id="donne" class="donne">Data: 500 G</h6>
+                            <h6 id="prix">Prix: 1500 fcfa</h6>
+                        </div>
+                    </div>
+                    <div class="footerPay">
+                        <h6>Billet emis :</h6>
+                        <div id="date">15/10/2021</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container mt-4">
+            <div class="row">
+                <div class="col-md-12">
+                    <h4>Payer avec </h4>
+                </div>
+            </div>
+        </div>
+        <div class="container-full">
+            <div class="pay">
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="row mt-4 mb-2">
+                        <div class="col-md-10 col-10">
+                            <img class="mb" src="img/momo.png" width="10%" /> MTN Mobile Money
+                        </div>
+                        <div class="col-md-2 col-2">
+                            <input type="radio" class="form-check-input " name="optradio" checked="checked" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="ligneMomo">
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mt-4 mb-2">
+                        <div class="col-md-10 col-10">
+                            <img class="mb" src="img/Airtel-Money.png" width="10%" /> Airtel Money
+                        </div>
+                        <div class="col-md-2 col-2">
+                            <input type="radio" class="form-check-input" name="optradio" />
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="container-full">
+            <div class="pay">
+            </div>
+        </div>
+        <div class="container mt-4">
+            <div class="row">
+                <div class="col-md-12">
+                    <button class="btn btn-confime btn-block" data-toggle="modal" data-target="#exampleModal"
+                        style="font-weight: bold;">CONFIRMEZ</button>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Number Phone</h5>
+
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="foo">
+                            <h6 class="mb-2" style="font-weight: bold;">veuillez saisir votre numéro de téléphone </h6>
+                            <h6 style="color: red;" id="ErrorNumber"></h6>
+                            <input type="hidden" name="donne" id="donneF" value="" />
+                            <input type="hidden" name="prix" id="prixF" value="" />
+                            <input type="number" name="numero" class="form-control mb-4" id="numero" value=""
+                                required />
+
+                            <button style="background-color: #e83e8c;color: white;font-weight: bold;" type="submit"
+                                class="btn btn-block">valider</button>
+                        </form>
+                    </div>
+                    <div class="container ">
+                        <div class="row justify-content-center">
+                            <div class="col-md-3 col-3">
+                                <div id="spinner" class=" text-muted"></div>
+                            </div>
+                        </div>
+
+                        <div class="text-center">
+                            <div id="output"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <script src="js/jquery-3.2.1.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+
+
+        <script>
+            let prix = sessionStorage.getItem('prix');
+            let donne = sessionStorage.getItem('donne');
+            let forfait = sessionStorage.getItem('forfait');
+
+            let idPrix = document.getElementById('prix');
+            let idDonne = document.getElementById('donne');
+            let idforfait = document.getElementById('forfait');
+            let idDate = document.getElementById('date');
+
+            const event = new Date();
+
+            const jsonDate = event.toJSON();
+
+            const date = new Date(jsonDate).toUTCString();
+
+            idPrix.innerHTML = 'Prix: ' + prix + ' FCFA';
+            idDonne.innerHTML = 'Data: ' + donne;
+            idforfait.innerHTML = forfait;
+            idDate.innerHTML = date;
+
+            let prixF = document.getElementById("prixF").value;
+            let donneF = document.getElementById("donneF").value;
+            prixF = prixF.innerHTML = prix;
+            donneF = donneF.innerHTML = donne;
+            prixF = prixF.innerHTML = prix;
+
+
+
+
+
+
+            // Variable to hold request
+            let request;
+
+
+
+            // Bind to the submit event of our form
+            $("#foo").submit(function (event) {
+
+                // Prevent default posting of form - put here to work in case of errors
+                event.preventDefault();
+
+
+                // Abort any pending request
+                if (request) {
+                    request.abort();
+                }
+                let prixQuery = document.getElementsByName("prix");
+
+                let numero = document.getElementById('numero').value;
+
+                console.log(prixQuery = prixF);
+                let validate = numero.match(/^\d{10}$/g);
+
+                let ErrorNumber = document.getElementById('ErrorNumber');
+
+                let error = '';
+                let regExp = /^\d{9}$/g;
+                let phone = numero.match(regExp);
+                //console.log(phone);
+
+                if (phone == null) {
+                    error = ErrorNumber.innerHTML = "Inserer un numero valide ";
+
+                } else {
+                    error = ErrorNumber.innerHTML = " ";
+
+
+
+
+
+
+                    let spinner = document.getElementById("spinner");
+                    spinner.classList.add("spinner-border");
+
+                    // setup some local variables
+                    let $form = $(this);
+
+                    // Let's select and cache all the fields
+                    let $inputs = $form.find("input,input[name=" + prixQuery + "], select, button, textarea");
+
+                    // Serialize the data in the form
+                    let serializedData = $form.serialize();
+
+                    //console.log(serializedData);
+
+                    // Let's disable the inputs for the duration of the Ajax request.
+                    // Note: we disable elements AFTER the form data has been serialized.
+                    // Disabled form elements will not be serialized.
+                    //$inputs.prop("disabled", true);
+
+                    //console.log( $inputs.prop("disabled", true));
+                    // Fire off the request to /form.php
+
+                    request = $.ajax({
+                        url: "http://cg-mayele.com/momo/collections.php",
+                        type: "post",
+                        dataType: 'json',
+                        data: {
+                            prix: prixF,
+                            numero: '242' + numero
+                        }
+                    });
+
+                    // Callback handler that will be called on success
+                    request.done(function (response, textStatus, jqXHR) {
+                        // Log a message to the console
+                        let colectNumero = response[0].numero;
+                        let colectPrice = response[0].prix;
+                        let colectToken = response[0].token;
+                        let colectUrl = response[0].url;
+                        let colectUuid = response[0].uuid;
+
+                        //console.log(response);
+                        function verification() {
+                            requestData = $.ajax({
+                                url: "http://cg-mayele.com/momo/verification.php",
+                                type: "post",
+                                dataType: 'json',
+                                data: {
+                                    numero: colectNumero,
+                                    prix: colectPrice,
+                                    token: colectToken,
+                                    url: colectUrl,
+                                    prix: colectPrice,
+                                    uuid: colectUuid,
+                                }
+                            });
+                            // Callback handler that will be called on success
+                            requestData.done(function (responses, textStatus, jqXHR) {
+                                // Log a message to the console
+
+
+
+                                if (responses[0].status == 'attente') {
+                                    document.getElementById('output').innerHTML = responses[0]
+                                        .message;
+                                    console.log(responses[0].message);
+                                    setTimeout(verification, 2000);
+
+                                } else if (responses[0].status == 'echec') {
+
+                                } else if (responses[0].status == 'valide') {
+                                    document.getElementById('numero').value = ''
+                                    spinner.classList.remove("spinner-border");
+                                    document.getElementById('output').innerHTML = responses[0]
+                                        .message;
+
+                                    let green = document.getElementById("output");
+                                    green.classList.add("text-success");
+                                }
+
+
+
+                            });
+                        }
+
+                        verification();
+
+
+
+
+
+                    });
+
+                    // Callback handler that will be called on failure
+                    request.fail(function (jqXHR, textStatus, errorThrown) {
+                        // Log the error to the console
+                        console.error(
+                            "The following error occurred: " +
+                            textStatus, errorThrown
+                        );
+                    });
+
+                    // Callback handler that will be called regardless
+                    // if the request failed or succeeded
+                    request.always(function () {
+                        // Reenable the inputs
+                        $inputs.prop("disabled", false);
+                    });
+
+                }
+
+
+
+
+
+
+
+
+            });
+        </script>
+
+
+
+    </body>
+
+</html>

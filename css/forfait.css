@@ -1,0 +1,163 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap');
+
+*{
+  font-family: 'Montserrat';
+}
+body {
+    margin: 0;
+    padding: 0;
+  font-family: 'Montserrat';
+}
+div{
+   font-family: 'Montserrat';
+}
+
+  .card-select {
+      text-align: center;
+      transition: all 0.5s ease;
+  }
+
+  .card-select .button:after {
+      content: 'select';
+  }
+
+  .card-select .button:focus {
+      background-color: #1779ba;
+  }
+
+  .card-select.is-selected {
+      border: 1px solid #1779ba;
+      box-shadow: 0 0 10px #6b0617;
+      transition: all 0.5s ease;
+  }
+
+
+
+  .pad {
+      width: 100%;
+      padding: 50px;
+      border-bottom-left-radius: 20px;
+      border-bottom-right-radius: 25px;
+      display: inline-block;
+
+      overflow: hidden;
+      background-position: center;
+      background-image: url("../img/bg.jpg");
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: cover;
+      height: 80px;
+  }
+
+  .CardForfait {
+      padding: 10px;
+      border-radius: 10px;
+      box-shadow: 0 30px 20px 0px rgba(167, 167, 167, 0.22);
+  }
+
+  .CardForfait .ban {
+      background-color: #35d6dc;
+      border-top-left-radius: 10px;
+      border-top-right-radius: 10px;
+      color: white;
+      padding: 8px;
+  }
+
+  .f1 span {
+      color: #35d6dc;
+  }
+
+  .ban2 {
+      background-color: #ffc107;
+      border-top-left-radius: 10px;
+      border-top-right-radius: 10px;
+      color: white;
+      padding: 8px;
+  }
+
+  .ban3 {
+      background-color: #e83e8c;
+      border-top-left-radius: 10px;
+      border-top-right-radius: 10px;
+      color: white;
+      padding: 8px;
+  }
+
+  .f3 span {
+      color: #e83e8c;
+  }
+
+  .f2 span {
+      color: #ffc107;
+  }
+
+  .comande {
+      font-size: 19px;
+       font-family: 'Montserrat';
+      
+  }
+
+  .fa-star-o {
+      font-size: 13px;
+
+  }
+
+  .ban4 {
+      background-color: #6c757d;
+      border-top-left-radius: 10px;
+      border-top-right-radius: 10px;
+      color: white;
+      padding: 8px;
+  }
+
+  .f4 span {
+      color: #6c757d;
+  }
+
+  .ban5 {
+      background-color: #20c997;
+      border-top-left-radius: 10px;
+      border-top-right-radius: 10px;
+      color: white;
+      padding: 8px;
+  }
+
+  .f5 span {
+      color: #20c997;
+  }
+
+  .ban6 {
+      background-color: #fd7e14;
+      border-top-left-radius: 10px;
+      border-top-right-radius: 10px;
+      color: white;
+      padding: 8px;
+  }
+
+  .f6 span {
+      color: #fd7e14;
+  }
+
+  .card {
+      padding: 0px;
+  }
+
+  .Cb {
+      padding: 8px;
+  }
+
+  button {
+      border: 0;
+      background-color: transparent;
+      padding: 0;
+      text-align: start;
+      border: 0px;
+  }
+
+  button:focus,
+  .btn-block:focus {
+      outline: none;
+      box-shadow: none;
+  }
+
+  
